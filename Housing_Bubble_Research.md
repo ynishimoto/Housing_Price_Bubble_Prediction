@@ -1,8 +1,21 @@
 Detecting Housing Bubbles
 ================
 
+**64 Per Cent Increase in House Prices From 2013 to 2017**
+
+The average price of homes in the Greater Toronto Area has increased substantially in recent years, from about $465,000 in 2013 to about $761,000 in 2017 (64 per cent increase). Is there a housing 'bubble'?
+
+![](Housing_Bubble_Research_files/figure-markdown_github/unnamed-chunk-3-1.png)
+
+Average prices trends alone are relatively crude and imprecise indicatord of housing bubbles. Average prices would not describe non-bubble scenarios, such as a price 'adjustment' due to an undervalued market prior to 2013.
+
+A more robust approach would be to look at the entire cross-sectional price distribution and see whether it had fat upper (right) tail compared to a normal distribution. The insight gained would be useful to prospective home buyers and real-estate developers.
+
+**Code for Scraping Real-Estate Listings Data**
+
+The proposed Toronto study would source data online by scraping a widely used real estate listing website. While there are many such listing services, presumably their content is similar, given that they generally subscribe to the same 'Multiple Listing Service' database.
+
 ``` r
-#SCRAPE REAL-ESTATE LISTINGS DATA FROM WEB
 ind <- 0
 df <- data.frame(id=NA, flg=NA, type=NA, pr=NA, adr=NA, city=NA, hood=NA, bd=NA, ba=NA, sq=NA, age=NA)
 for (n in 4:l(urls1)) { 
@@ -58,25 +71,326 @@ for (n in 4:l(urls1)) {
 }
 ```
 
-**Scraped Real Estate Data for the Greater Toronto Area**
+**Sample of Scraped Real-Estate Data**
 
-    ##             id  type      pr                 adr    city bd ba   sq age
-    ## 10240 E4121820 House  839900 74 Spring Forest Sq Toronto  4  4   NA  NA
-    ## 10241 W4112067 House  899999     14 Bicknell Ave Toronto  3  3   NA  NA
-    ## 10242 W4080239 House 2389000 61 Ridge Point Cres Toronto  4  7 4250 2.5
-    ## 10243 E4124167 House 1100000 60 Marchington Circ Toronto  2  3   NA  NA
-    ## 10244 E4124115 House  828800   55 Sandy Haven Dr Toronto  3  3   NA  NA
-    ## 10245 W4124151 House  998000     68 Decarie Circ Toronto  3  2   NA  NA
-    ##       Tor W E N NW
-    ## 10240   1 0 0 0  0
-    ## 10241   1 0 0 0  0
-    ## 10242   1 0 0 0  0
-    ## 10243   1 0 0 0  0
-    ## 10244   1 0 0 0  0
-    ## 10245   1 0 0 0  0
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+type
+</th>
+<th style="text-align:right;">
+pr
+</th>
+<th style="text-align:left;">
+adr
+</th>
+<th style="text-align:left;">
+city
+</th>
+<th style="text-align:right;">
+bd
+</th>
+<th style="text-align:right;">
+ba
+</th>
+<th style="text-align:right;">
+sq
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:right;">
+Tor
+</th>
+<th style="text-align:right;">
+W
+</th>
+<th style="text-align:right;">
+E
+</th>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+NW
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+10240
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+839900
+</td>
+<td style="text-align:left;">
+74 Spring Forest Sq
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10241
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+899999
+</td>
+<td style="text-align:left;">
+14 Bicknell Ave
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10242
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+2389000
+</td>
+<td style="text-align:left;">
+61 Ridge Point Cres
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+4250
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10243
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+1100000
+</td>
+<td style="text-align:left;">
+60 Marchington Circ
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10244
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+828800
+</td>
+<td style="text-align:left;">
+55 Sandy Haven Dr
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10245
+</td>
+<td style="text-align:left;">
+House
+</td>
+<td style="text-align:right;">
+998000
+</td>
+<td style="text-align:left;">
+68 Decarie Circ
+</td>
+<td style="text-align:left;">
+Toronto
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+**House Price Prediction/Adjustment Model**
+
+House prices were adjusted for quality (their features) to control for exogenous characteristics affecting individual house prices, such as their size (sqft), the number of bedrooms, the number of bathrooms, and their location with respect to Metropolitan Toronto.
 
 ``` r
-#HOUSING PRICE MODEL
 adjust <- function(df) {
   df <- df[,c(3,6:14)]
   coeff <- lm(pr ~ bd + ba + sq + age + W + E + N + NW, data=df)[[1]]
@@ -109,16 +423,10 @@ densdist <- function(v, len=5000) {
 }
 ```
 
-**Quality-adjusted Prices**
+**Density Distribution of Quality-adjusted Home Prices**
 
-    ##        x.data           y.data            y.norm
-    ## 277  259.0981 0.00000001060608 0.000000006542215
-    ## 278  771.7746 0.00000001070873 0.000000006574720
-    ## 279 1284.4512 0.00000001081172 0.000000006607371
-    ## 280 1797.1277 0.00000001091502 0.000000006640168
-    ## 281 2309.8043 0.00000001101866 0.000000006673113
-    ## 282 2822.4808 0.00000001112260 0.000000006706205
-
-![](Housing_Bubble_Research_files/figure-markdown_github/unnamed-chunk-8-1.png)
+Initial analysis shows that Toronto likely is not experiencing a housing price bubble, as adjusted prices for both houses and condos (solid lines) are not skewed to the right. In fact, they appear slightly skewed to the left compared to the normal distribution (dotted line). This suggests that the market is currently undervalued and that prices may continue to rise indefinitely
 
 ![](Housing_Bubble_Research_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+![](Housing_Bubble_Research_files/figure-markdown_github/unnamed-chunk-10-1.png)
